@@ -7,3 +7,5 @@ I have already started working on project 3 , but i still do not understand all 
 
 NOTE::::
 Please all questions and worries should be added here, if they cant be understoof just from the commit 
+
+git clone https://github.com/TabotCharlesBessong/OSProject.git
