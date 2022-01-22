@@ -8,6 +8,7 @@ This project consists of designing a C program to serve as a shell interface tha
 #include <stdlib.h>
 #include <string.h>
 #include <sys/wait.h>
+#include<fcntl.h>
 
 #define MAX_LINE 1024 // max length of command
 #define MAX_PATH 1024
@@ -25,23 +26,32 @@ int main(void) {
 	size_t len; // simple flag check to make sure users type a command or not
 	
 	pid_t bg_pids[50]; // stores background process pids
-	int bg_count = 0; // number of pids running in background
-	
+ 	int bg_count = 0; // number of pids running in background
+	int count=0;// for history counts
+	char history[MAX_LINE];// for history
 	// run while flag is true
 	while (run) { 
 		
 		// get current working directory for use with cd, print along with daniel_ish:
-   		if (getcwd(cwd, sizeof(cwd)) != NULL) {} 
+   		/*if (getcwd(cwd, sizeof(cwd)) != NULL) {} 
    		else { perror("getcwd() error");
        		return 1;
-   		}
+   		}*/
 	
-		printf("Xenunmakuzi ~%s: ", cwd); // print prompt
+		printf("osh>"); // print prompt
 		fflush(stdout);
 	
 		// get user command input
 		int i = 0; // i is global variable for number of total arguments
-		if (fgets(cmd, sizeof cmd, stdin)) {
+		fgets(cmd, 41, stdin);
+		{
+		if(strcmp(cmd, "!!\n")==0){
+		if(count>0){
+                strcpy(cmd, history);
+		}
+		else{
+		printf("No commands in history");
+		continue;}	}
 			token[i] = strtok(cmd, delim); // tokenize cmd
 			
 			while (token[i] != NULL) {
@@ -49,11 +59,12 @@ int main(void) {
 				token[i] = strtok(NULL, delim); // store null terminator at end of array
 			}
 		}
-		
+		count++;
+		strcpy(history, cmd);
 		/*
 			After reading user input, the steps are:
 			1) fork a child process using fork() 
-			2) the child process will invoke execlp()
+			2) the child process will invoke execvp()
 			3) if command included & parent will invoke wait()
 		*/
 		
@@ -215,13 +226,13 @@ int main(void) {
 			if (bgf) {
 				bg_pids[bg_count] = pid; // add pid to array of background processes at end
 				bg_count++; // increment background process number
-				printf("[%d]+ Running (pid: %d) %s\n", bg_count, pid, cmd); // print pid info
+				printf("parent process running in the background %s\n", bg_count, pid, cmd); // print pid info
 			} else {
 				waitpid(pid, NULL, 0); // make parent wait
 			}
 		}
 		
-	}
 	
+	}
 	return 0; 
 }
