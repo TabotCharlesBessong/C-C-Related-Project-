@@ -231,8 +231,6 @@ int main(void) {
 				waitpid(pid, NULL, 0); // make parent wait
 			}
 		}
-		
-	
 	}
 	return 0; 
 }
