@@ -50,7 +50,7 @@ int main(void) {
                 strcpy(cmd, history);
 		}
 		else{
-		printf("No commands in history");
+		printf("No commands in history\n");
 		continue;}	}
 			token[i] = strtok(cmd, delim); // tokenize cmd
 			
@@ -226,7 +226,7 @@ int main(void) {
 			if (bgf) {
 				bg_pids[bg_count] = pid; // add pid to array of background processes at end
 				bg_count++; // increment background process number
-				printf("parent process running in the background %s\n", bg_count, pid, cmd); // print pid info
+				printf("parent process running in the background %s\n", cmd); //bg_count, pid); // print pid info
 			} else {
 				waitpid(pid, NULL, 0); // make parent wait
 			}
