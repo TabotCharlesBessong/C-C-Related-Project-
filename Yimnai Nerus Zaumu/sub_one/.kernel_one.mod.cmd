@@ -1,0 +1,1 @@
+cmd_/home/yimnai/FET/L-300/firstSemester/CEF-347-operatingSystems/project/sub_one/kernel_one.mod := { echo  /home/yimnai/FET/L-300/firstSemester/CEF-347-operatingSystems/project/sub_one/kernel_one.o;  echo; } > /home/yimnai/FET/L-300/firstSemester/CEF-347-operatingSystems/project/sub_one/kernel_one.mod
