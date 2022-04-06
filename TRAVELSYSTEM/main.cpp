@@ -106,15 +106,40 @@ class Cabs {
           Sleep(99);
           system("CLS");
           cabDetails();
+          // menu();
         }
       }else{
-        cout<<"\nPlease enter the right choice: "<<endl;
+        cout<<"\nPlease enter the right choice Press 1 to redirect to main menu: "<<endl;
+        cin>>hireCab;
+        system("CLS");
+        if(hireCab == 1){
+          cabDetails();
+        }else{
+          cabDetails();
+        }
       }
     }
 };
 
 class Booking{
+  public:
+    int choiceHotels, packChoice;
+    float hotelCost;
 
+    void hotels(){
+      string hotelNo[] = {"Avulion","Obvulion","Pakatcha"};
+      for(int i = 0 ; i < 3 ; i++){
+        cout<<(i+1)<<hotelNo[i];
+      }
+      cout<<"\nThe system currently collaborated with the above hotels: "<<endl;
+      cout<<"Press any key to book or \n Enter number of the hotel you want to book: "<<endl;
+      cin>>choiceHotels;
+      system("CLS");
+
+      if(choiceHotels == 1){
+        
+      }
+    }
 };
 
 class Charges {
